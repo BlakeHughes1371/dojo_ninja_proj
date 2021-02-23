@@ -1,0 +1,68 @@
+# MY BOOKS #
+Book.objects.create(title="C Sharp")
+Book.objects.create(title="Java")
+Book.objects.create(title="Python")
+Book.objects.create(title="PHP")
+Book.objects.create(title="Ruby")
+
+#------------------------------------------------------------
+
+# MY AUTHORS #
+Author.objects.create(first_name="Jane", last_name="Austen")
+Author.objects.create(first_name="Emily", last_name="Dickinson")
+Author.objects.create(first_name="Fyodor", last_name="Dostoevsky")
+Author.objects.create(first_name="William", last_name="Shakespeare")
+Author.objects.create(first_name="Lau", last_name="Tzu")
+
+#------------------------------------------------------------
+# CHANGE THE NAME OF THE C SHARP BOOK TO C# #
+c = Book.objects.get(id=1)
+c.title = "C#"
+c.save()
+#------------------------------------------------------------
+# CHANGE THE FIRST NAME OF THE 4TH AUTHOR TO BILL #
+c = Author.objects.get(id=4)
+c.first_name = "Bill"
+c.save()
+#------------------------------------------------------------
+# ASSIGN THE FIRST AUTHOR TO THE FIRST 2 BOOKS #
+Author.objects.get(id=1).notes.add(Book.objects.get(id=1))
+Author.objects.get(id=1).notes.add(Book.objects.get(id=2))
+#------------------------------------------------------------
+# ASSIGN THE SECOND AUTHOR TO THE FIRST 3 BOOKS #
+Author.objects.get(id=2).notes.add(Book.objects.get(id=1))
+Author.objects.get(id=2).notes.add(Book.objects.get(id=2))
+Author.objects.get(id=2).notes.add(Book.objects.get(id=3))
+#------------------------------------------------------------
+# ASSIGN THE THIRD AUTHOR TO THE FIRST 4 BOOKS #
+Author.objects.get(id=3).notes.add(Book.objects.get(id=1))
+Author.objects.get(id=3).notes.add(Book.objects.get(id=2))
+Author.objects.get(id=3).notes.add(Book.objects.get(id=3))
+Author.objects.get(id=3).notes.add(Book.objects.get(id=4))
+#------------------------------------------------------------
+# ASSIGN THE FOURTH AUTHOR ALL 5 BOOKS #
+Author.objects.get(id=4).notes.add(Book.objects.get(id=1))
+Author.objects.get(id=4).notes.add(Book.objects.get(id=2))
+Author.objects.get(id=4).notes.add(Book.objects.get(id=3))
+Author.objects.get(id=4).notes.add(Book.objects.get(id=4))
+Author.objects.get(id=4).notes.add(Book.objects.get(id=5))
+#------------------------------------------------------------
+# RETRIEVE ALL THE AUTHORS FOR THE THIRD BOOK #
+Book.objects.get(id=3).publishers.all()
+#------------------------------------------------------------
+# REMOVE THE FIRST AUTHOR OF THE THIRD BOOK #
+Author.objects.get(id=2).notes.remove(Book.objects.get(id=3))
+#------------------------------------------------------------
+# ADD THE FIFTH AUTHOR AS ONE OF THE AUTHORS OF THE SECOND BOOK #
+Author.objects.get(id=5).notes.add(Book.objects.get(id=2))
+#------------------------------------------------------------
+# FIND ALL THE BOOKS THAT THE 3RD AUTHOR IS PART OF #
+Author.objects.get(id=3).notes.all()
+#------------------------------------------------------------
+# FIND ALL THE AUTHORS THAT CONTRIBUTED TO THE FIFTH BOOK #
+Book.objects.get(id=5).publishers.all()
+#------------------------------------------------------------
+
+
+
+

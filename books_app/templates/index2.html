@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Book Information:{{onebook.title}}</h1>
+    <h2>ID: {{onebook.id}}</h2>
+    <h3>Description: {{onebook.desc}}</h3>
+
+    <!-- <p>{{onebook.publishers.all}}</p> -->
+    <h2>Authors:</h2>
+    <ul>
+        {% for Authors in onebook.publishers.all %}
+        <li>{{authors.first_name}} {{Authors.last_name}}</li>
+        {% endfor %}
+    </ul>
+    <form action="/addAuthortoBook/{{onebook.id}}" method="post">
+        {% csrf_token %}
+        <select name="addAuthor" id="">
+            {% for authorlist in allAuthors %}
+            <option value="{{authorlist.id}}">{{authorlist.first_name}} {{authorlist.last_name}}</option>
+            {% endfor %}
+        </select>
+        <p><textarea name="description" id="" cols="30" rows="5"></textarea></p>
+        <p>Authors: </p>
+        <p><input type="submit" value="Add"></p>
+    </form>
+
+</body>
+
+</html>
